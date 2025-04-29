@@ -6,8 +6,8 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/css/app.scss', // Tailwind用
-                'resources/js/app.tsx'    // React側エントリーポイント
+                'resources/css/app.css',
+                'resources/js/app.tsx',
             ],
             refresh: true,
         }),

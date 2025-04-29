@@ -5,14 +5,22 @@
         "moduleResolution": "node",
         "jsx": "react-jsx",
         "strict": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "allowJs": true,
         "esModuleInterop": true,
-        "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
-        "types": ["vite/client"]
+        "skipLibCheck": true,
+        "types": ["vite/client"],
+        "paths": {
+            "@/*": ["./resources/js/*"],
+            "ziggy-js": ["./vendor/tightenco/ziggy"]
+        }
     },
     "include": [
         "resources/js/**/*.ts",
         "resources/js/**/*.tsx",
+        "resources/js/**/*.d.ts",
         "vite.config.js"
     ]
 }
