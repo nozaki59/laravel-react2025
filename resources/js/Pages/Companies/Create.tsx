@@ -1,9 +1,10 @@
 import React from 'react';
-import { Head, useForm } from '@inertiajs/react';
+import { Head, useForm, usePage } from '@inertiajs/react';
 import Layout from '@/Layouts/Layout';
 import { route } from 'ziggy-js';
 
 export default function CreateCompany() {
+    const { flash = {} } = usePage().props as any;
     const { data, setData, post, processing, errors } = useForm({
         name: '',
         email: '',
@@ -11,16 +12,24 @@ export default function CreateCompany() {
         phone: '',
         address: '',
         description: '',
+        logo: null as File | null,
     });
 
     const submit = (e: React.FormEvent) => {
         e.preventDefault();
-        post(route('companies.store'));
+        post(route('companies.store'), {
+            preserveScroll: true,
+        });
     };
 
     return (
         <Layout>
             <Head title="企業情報登録" />
+            {flash.success && (
+                <div className="mb-4 p-3 bg-green-100 text-green-800 rounded">
+                    {flash.success}
+                </div>
+            )}
 
             <div className="w-1/2 mx-auto p-6 bg-white shadow rounded">
                 <h1 className="text-2xl font-bold mb-4">企業情報登録フォーム</h1>
@@ -94,6 +103,22 @@ export default function CreateCompany() {
                             className="mt-1 block w-full border-gray-300 rounded h-24"
                         />
                         {errors.description && <p className="text-red-600 text-sm mt-1">{errors.description}</p>}
+                    </div>
+
+                    {/* Logo Upload */}
+                    <div>
+                        <label className="block text-gray-700">ロゴ画像</label>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={e =>
+                                setData('logo', e.target.files ? e.target.files[0] : null)
+                            }
+                            className="mt-1 block w-full text-sm text-gray-700"
+                        />
+                        {errors.logo && (
+                            <p className="text-red-600 text-sm mt-1">{errors.logo}</p>
+                        )}
                     </div>
 
                     <div className="flex justify-end">

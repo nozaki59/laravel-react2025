@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -14,9 +15,13 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('companies/create', function () {
+Route::get('/companies/create', function () {
     return Inertia::render('Companies/Create');
 })->name('companies.create');
+
+Route::post('/companies', [CompanyController::class, 'store'])
+    ->name('companies.store');
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
