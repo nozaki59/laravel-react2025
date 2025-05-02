@@ -14,6 +14,10 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('companies/create', function () {
+    return Inertia::render('Companies/Create');
+})->name('companies.create');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "baseUrl": ".",
         "target": "esnext",
         "module": "esnext",
         "moduleResolution": "node",
@@ -14,7 +15,7 @@
         "types": ["vite/client"],
         "paths": {
             "@/*": ["./resources/js/*"],
-            "ziggy-js": ["./vendor/tightenco/ziggy"]
+            "ziggy-js": ["node_modules/ziggy-js/dist/js/route.js"]
         }
     },
     "include": [
